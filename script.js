@@ -9,117 +9,93 @@ const gameArea = document.getElementById("gameArea");
 
 const bgmusic = document.getElementById("bgmusic");
 
+const startScreen = document.getElementById("startScreen");
+const startBtn = document.getElementById("startBtn");
+
 let score = 0;
 let seconds = 30;
 let gameOver = false;
 let milkshakeReady = false;
-let musicStarted = false;
+let gameStarted = false;
 
-/* TIMER */
+let moveInterval;
+let countdown;
 
-const countdown = setInterval(() => {
+/* START GAME */
+startBtn.addEventListener("click", () => {
 
-    if (gameOver) return;
+    startScreen.style.display = "none";
+    gameStarted = true;
 
-    seconds--;
+    message.textContent = "Go!";
 
-    timer.textContent = seconds;
+    /* MUSIC */
+    bgmusic.volume = 0.4;
+    bgmusic.play().catch(()=>{});
 
-    if (seconds <= 0) {
+    /* TIMER */
+    countdown = setInterval(() => {
 
-        gameOver = true;
+        if (gameOver) return;
 
-        clearInterval(countdown);
+        seconds--;
+        timer.textContent = seconds;
 
-        message.textContent =
-        "Game Over! Score: " + score;
-    }
+        if (seconds <= 0) {
 
-}, 1000);
+            gameOver = true;
+            clearInterval(countdown);
+            clearInterval(moveInterval);
 
-/* MOVE CHARACTER */
+            message.textContent = "Game Over! Score: " + score;
+        }
 
-setInterval(() => {
+    }, 1000);
 
-    if (gameOver) return;
+    /* MOVE CHARACTER */
+    moveInterval = setInterval(() => {
 
-    const x =
-    Math.random() * (gameArea.clientWidth - 200);
+        if (gameOver) return;
 
-    const y =
-    Math.random() * (gameArea.clientHeight - 200);
+        const x = Math.random() * (gameArea.clientWidth - 200);
+        const y = Math.random() * (gameArea.clientHeight - 200);
 
-    character.style.left = x + "px";
-    character.style.top = y + "px";
+        character.style.left = x + "px";
+        character.style.top = y + "px";
 
-}, 1000);
+    }, 1000);
 
-/* SELECT MILKSHAKE */
-
-milkshake.addEventListener("click", () => {
-
-    if (gameOver) return;
-
-    milkshakeReady = true;
-
-    message.textContent =
-    "Now tap the character!";
 });
 
-/* HIT CHARACTER */
+/* MILKSHAKE CLICK */
+milkshake.addEventListener("click", () => {
 
+    if (!gameStarted || gameOver) return;
+
+    milkshakeReady = true;
+    message.textContent = "Now tap the character!";
+});
+
+/* CHARACTER CLICK */
 character.addEventListener("click", () => {
 
-    if (gameOver) return;
-
+    if (!gameStarted || gameOver) return;
     if (!milkshakeReady) return;
 
     milkshakeReady = false;
 
     score++;
+    scoreText.textContent = "Score: " + score;
 
-    scoreText.textContent =
-    "Score: " + score;
-
-    message.textContent =
-    "Nice one!";
-
-    character.src =
-    "images/crying-character.png";
+    character.src = "images/crying-character.png";
 
     splash.style.display = "block";
-
-    splash.style.left =
-    character.style.left;
-
-    splash.style.top =
-    character.style.top;
+    splash.style.left = character.style.left;
+    splash.style.top = character.style.top;
 
     setTimeout(() => {
-
+        character.src = "images/character.png";
         splash.style.display = "none";
-
-        character.src =
-        "images/character.png";
-
     }, 500);
 
 });
-
-/* START MUSIC ON FIRST TAP */
-
-document.body.addEventListener("click", () => {
-
-    if (musicStarted) return;
-
-    bgmusic.volume = 0.4;
-
-    bgmusic.play()
-        .then(() => {
-            musicStarted = true;
-        })
-        .catch(error => {
-            console.log(error);
-        });
-
-}, { once: true });
