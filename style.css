@@ -1,18 +1,13 @@
+
 /* RESET */
 html, body{
     margin:0;
     padding:0;
-    height:100%;
     width:100%;
+    height:100%;
     overflow:hidden;
     font-family:Arial, sans-serif;
     background:black;
-}
-
-/* MAIN LAYOUT */
-body{
-    display:flex;
-    flex-direction:column;
 }
 
 /* TOP BAR */
@@ -41,10 +36,11 @@ body{
     font-size:22px;
 }
 
-/* GAME AREA TAKES AVAILABLE SPACE */
+/* GAME AREA */
 #gameArea{
     flex:1;
     position:relative;
+    height:70vh;
     overflow:hidden;
 
     background-image:url("images/background.jpg");
@@ -78,11 +74,22 @@ body{
     pointer-events:none;
 }
 
-/* MESSAGE ALWAYS VISIBLE */
+/* 🔥 FIXED MESSAGE (THIS FIXES MOBILE ISSUE) */
 #message{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+
     text-align:center;
     color:white;
     font-size:18px;
-    padding:10px;
-    background:rgba(0,0,0,0.6);
+
+    padding:12px;
+
+    background:rgba(0,0,0,0.85);
+
+    z-index:999999;
+
+    pointer-events:none;
 }
