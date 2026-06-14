@@ -1,4 +1,3 @@
-
 const character = document.getElementById("character");
 const milkshake = document.getElementById("milkshake");
 const splash = document.getElementById("splash");
@@ -8,10 +7,13 @@ const scoreText = document.getElementById("score");
 const message = document.getElementById("message");
 const gameArea = document.getElementById("gameArea");
 
+const bgmusic = document.getElementById("bgmusic");
+
 let score = 0;
 let seconds = 30;
 let gameOver = false;
 let milkshakeReady = false;
+let musicStarted = false;
 
 /* TIMER */
 
@@ -103,3 +105,21 @@ character.addEventListener("click", () => {
     }, 500);
 
 });
+
+/* START MUSIC ON FIRST TAP */
+
+document.body.addEventListener("click", () => {
+
+    if (musicStarted) return;
+
+    bgmusic.volume = 0.4;
+
+    bgmusic.play()
+        .then(() => {
+            musicStarted = true;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+}, { once: true });
