@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <!-- IMPORTANT MOBILE FIX -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <title>Milkshake Game</title>
@@ -13,27 +11,27 @@
 
 <body>
 
+<!-- START SCREEN -->
+<div id="startScreen">
+    <h1>Milkshake Game</h1>
+    <button id="startBtn">START</button>
+</div>
+
 <!-- TOP BAR -->
 <div id="topBar">
-
     <h1 id="title">Milkshake Game</h1>
-
     <div id="timer">30</div>
-
     <div id="score">Score: 0</div>
-
 </div>
 
 <!-- GAME AREA -->
 <div id="gameArea">
-
     <img id="character" src="images/character.png">
     <img id="milkshake" src="images/milkshake.png">
     <img id="splash" src="images/splash.png">
-
 </div>
 
-<!-- MESSAGE (THIS WAS YOUR ISSUE) -->
+<!-- MESSAGE -->
 <div id="message">
     Tap the milkshake, then tap the character
 </div>
