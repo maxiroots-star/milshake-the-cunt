@@ -1,4 +1,3 @@
-
 /* RESET */
 html, body{
     margin:0;
@@ -8,6 +7,40 @@ html, body{
     overflow:hidden;
     font-family:Arial, sans-serif;
     background:black;
+}
+
+/* START SCREEN */
+#startScreen{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+
+    background:black;
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    z-index:999999;
+}
+
+#startScreen h1{
+    font-size:32px;
+    margin-bottom:20px;
+}
+
+#startBtn{
+    padding:15px 30px;
+    font-size:20px;
+    border:none;
+    border-radius:10px;
+    background:white;
+    color:black;
+    font-weight:bold;
 }
 
 /* TOP BAR */
@@ -38,7 +71,6 @@ html, body{
 
 /* GAME AREA */
 #gameArea{
-    flex:1;
     position:relative;
     height:70vh;
     overflow:hidden;
@@ -74,7 +106,7 @@ html, body{
     pointer-events:none;
 }
 
-/* 🔥 FIXED MESSAGE (THIS FIXES MOBILE ISSUE) */
+/* MESSAGE (MOBILE SAFE) */
 #message{
     position:fixed;
     bottom:0;
