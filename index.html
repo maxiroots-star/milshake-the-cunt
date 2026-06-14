@@ -1,32 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milkshake The Cunt</title>
+
+    <title>Milkshake Game</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
+<!-- TOP BAR -->
 <div id="topBar">
+
+    <h1 id="title">Milkshake The Cunt</h1>
+
     <div id="timer">30</div>
+
     <div id="score">Score: 0</div>
+
 </div>
 
+<!-- GAME AREA -->
 <div id="gameArea">
+
     <img id="character" src="images/character.png">
     <img id="milkshake" src="images/milkshake.png">
     <img id="splash" src="images/splash.png">
+
 </div>
 
+<!-- MESSAGE -->
 <div id="message">
     Tap the milkshake, then tap the character
 </div>
 
-<audio id="bgmusic" loop>
+<!-- MUSIC (YOU ALREADY CONFIRMED THIS WORKS) -->
+<audio id="bgmusic" preload="auto" loop>
     <source src="music/music.mp3" type="audio/mpeg">
 </audio>
 
+<!-- SCRIPT -->
 <script src="script.js"></script>
 
 </body>
